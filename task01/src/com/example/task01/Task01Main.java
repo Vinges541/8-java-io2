@@ -31,14 +31,15 @@ public class Task01Main {
             return null;
         }
         Pattern pattern = Pattern.compile("format\\.tags\\.title=\"(.+)\"");
-        AtomicReference<String> result = new AtomicReference<>();
-        bufferedReader.lines().forEach(line -> {
-            if (result.get() == null) {
-                Matcher matcher = pattern.matcher(line);
-                if (matcher.matches())
-                    result.set(matcher.group(1));
+        String result = null;
+        String[] lines = (String[]) bufferedReader.lines().toArray();
+        for (String line : lines) {
+            Matcher matcher = pattern.matcher(line);
+            if (matcher.matches()) {
+                result = matcher.group(1);
+                break;
             }
-        });
-        return result.get();
+        }
+        return result;
     }
 }
