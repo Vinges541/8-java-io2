@@ -32,8 +32,7 @@ public class Task01Main {
         }
         Pattern pattern = Pattern.compile("format\\.tags\\.title=\"(.+)\"");
         String result = null;
-        String[] lines = (String[]) bufferedReader.lines().toArray();
-        for (String line : lines) {
+        for (String line = bufferedReader.readLine(); line != null; line = bufferedReader.readLine()) {
             Matcher matcher = pattern.matcher(line);
             if (matcher.matches()) {
                 result = matcher.group(1);
